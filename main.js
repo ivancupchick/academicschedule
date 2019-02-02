@@ -223,9 +223,11 @@ window.onload = () => {
 function getId(id) {
   return document.getElementById(id);
 }
+
 function createElem(name) {
   return document.createElement(name);
 }
+
 function getMounth(date) {
   switch (date.getMonth()) {
     case 0:
@@ -254,6 +256,7 @@ function getMounth(date) {
     return 'Декабря'
   }
 }
+
 function setDay(date) {
   switch (date.getDay()) {
     case 0:
@@ -306,9 +309,6 @@ function showFullWeek() {
   }
 }
 
-
-
-
 // for Full Week
 function createDivsForFullWeek() {
   getId('today').remove();
@@ -324,10 +324,6 @@ function createDivsForFullWeek() {
     div.appendChild(datediv);
   }
 }
-
-
-
-
 
 // for Today and Tomorrow
 function createScheduale(scheduleToday, day, date) { 
