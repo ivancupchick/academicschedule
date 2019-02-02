@@ -11,16 +11,18 @@
 </head>
 <body class="body">
   <div id="load"></div>
-  <div class="container col-lg-6 col-md-8 col-sm-8 col-xs-12" id="main">
-    <div id="week">Сейчас 3 неделя</div>
-    <div id="today" class="schedule header-h1">
-        <h1 class="title">Сегодня</h1>
-        <p id = "datetoday" class="date">ПРИМЕР</p>
+  <div class="container col-lg-5 col-md-7 col-sm-8 col-xs-12" id="main">
+    <div id="week">
+        <button id="weekButton" onclick="showFullWeek()">Сейчас 3 неделя</button>
     </div>
-    <div id="tomorrow" class="schedule header-h1">
+    <div id="today" class="schedule">
+        <h1 class="title" >Сегодня</h1>
+    </div>
+
+    <div id="tomorrow" class="schedule">
         <h1 class="title">Завтра</h1>
-        <p id="datetomorrow" class="date">ПРИМЕР</p>
-    </div>
+   </div>
+
   </div>
 </body>
 </html>

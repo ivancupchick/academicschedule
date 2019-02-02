@@ -217,7 +217,7 @@ window.onload = () => {
   setTimeout(() => {
     //getId('load').style.visibility = "hidden";
   }, 2000)
-  setWeek();
+  showTodayTomorrow();
 }
 //
 function getId(id) {
@@ -265,34 +265,76 @@ function setDay(date) {
   }
 }
 //
-function setWeek() { //Main function
+function showTodayTomorrow() { //Main function
   let weekD = getId('week');
   let nowD = new Date();
   let numberW = getWeek(nowD);
-  weekD.innerHTML = `Сейчас ${numberW} неделя`
+  weekD.children[0].innerHTML = `Сейчас ${numberW} неделя`
   let scheduleWeek = getScheduleWeek(numberW);
 
   nowD = setDay(nowD); // set working day
 
   createScheduale( getScheduleToday(nowD, scheduleWeek), 'today', nowD);
+  getId(`datetoday`).innerHTML = ``;
   nowD.setDate(nowD.getDate() + 1);
   createScheduale( getScheduleToday(nowD, scheduleWeek), 'tomorrow', nowD);
+  getId(`datetomorrow`).innerHTML = ``;
+}
+
+function showFullWeek() {
+  let nowD = new Date();
+  switch (nowD.getDay()) {
+    case 6:
+    nowD = new Date(nowD.setDate(nowD.getDate() + 2));  
+    break;
+    case 0:
+    nowD = new Date(nowD.setDate(nowD.getDate() + 1));  
+    break;
+    case 1:
+    nowD = new Date(nowD);  
+    break;
+    default:
+    nowD = new Date(nowD.setDate(nowD.getDate() - (nowD.getDay() - 1)));
+    break;
+  }
+  let numberW = getWeek(nowD);
+  let scheduleWeek = getScheduleWeek(numberW);
+  createDivsForFullWeek();
+  for (let i = 1; i < 6; i++) {
+    createScheduale( getScheduleToday(nowD, scheduleWeek), `${i}${i}`, nowD);
+    nowD.setDate(nowD.getDate() + 1);
+  }
+}
+
+
+
+
+// for Full Week
+function createDivsForFullWeek() {
+  getId('today').remove();
+  getId('tomorrow').remove();
+  for (let i = 1; i < 6; i++) {
+    let div = createElem('div');
+    div.id = `${i}${i}`;
+    div.className = 'schedule header-h1';
+    getId('main').appendChild(div);
+    let datediv = createElem('h1');
+    datediv.id = `date${i}${i}`;
+    datediv.className = 'title';
+    div.appendChild(datediv);
+  }
 }
 
 
 
 
 
-
-
-
+// for Today and Tomorrow
 function createScheduale(scheduleToday, day, date) { 
-  let text = `date${day}`;
+  createFields(day);
   let mounth = getMounth(date);
   getId(`date${day}`).innerHTML = `${date.getDate()} ${mounth}`;
-  createFields(day);
   fillFields(scheduleToday, day);
-
 }
 
 function fillFields(scheduleToday, day) {
@@ -305,23 +347,24 @@ function fillFields(scheduleToday, day) {
 
 function fillField(pare, id, i, day) { // fill and draw filed
   let div = getId(id);
-  
+  let pareLeft = getId(id).firstChild;
+  let pareRight = getId(id).lastChild;
   if (pare !== null) {
     // Название
     let namePare = createElem('p'); 
     namePare.innerHTML = `${pare.name}`;
     namePare.className += 'namePare ';
-    div.appendChild(namePare);
+    pareLeft.appendChild(namePare);
     // Кто проверяет журнал
     let cheakerPare = createElem('p'); 
     cheakerPare.innerHTML = `${pare.cheakerMissingMan}`;
     cheakerPare.className += 'cheaker ';
-    div.appendChild(cheakerPare);
+    pareRight.appendChild(cheakerPare);
     // Тип
     let typePare = createElem('p'); 
     typePare.innerHTML = `${pare.type}`;
     typePare.className += 'typePare ';
-    div.appendChild(typePare);
+    pareRight.appendChild(typePare);
     // Colors
     if ((pare.cheakerMissingMan == teacher && pare.type ==  LK) || 
         (pare.cheakerMissingMan == star && pare.type == PZ)) {
@@ -340,18 +383,53 @@ function fillField(pare, id, i, day) { // fill and draw filed
 
 function createFields(day) { // создание полей
   dayDiv = getId(day);
+  
+  p = createElem('p');
+  p.className = 'date';
+  p.id = `date${day}`;
+  dayDiv.appendChild(p);
+
+  entire = createElem('div');
+  entire.className = 'entire';
+  dayDiv.appendChild(entire);
+
   for (let i = 0; i < 6; i++) {
-    let chield = createElem('div');
-    chield.setAttribute('class', 'pare');
-    chield.setAttribute('id', `${day}pare${i}`);
-    dayDiv.appendChild(chield);
+    let pare = createElem('div');
+    pare.setAttribute('class', 'pare');
+    pare.setAttribute('id', `${day}pare${i}`);
+    dayDiv.insertBefore(pare, dayDiv.lastChild);
+
+    let pareLeft = createElem('div');
+    pareLeft.setAttribute('class', 'pareLeft');
+    pare.appendChild(pareLeft);
+
+    let pareRight = createElem('div');
+    pareRight.setAttribute('class', 'pareRight');
+    pare.appendChild(pareRight);
+
+    let p = createElem('p');
+    p.className = 'pareTime';
+    switch (i) {
+      case 0: p.innerHTML = '8:00 - 9:40';
+      break;
+      case 1: p.innerHTML = '9:55 - 11:35';
+      break;
+      case 2: p.innerHTML = '12:15 - 13:55';
+      break;
+      case 3: p.innerHTML = '14:10 - 15:50';
+      break;
+      case 4: p.innerHTML = '16:20 - 18:00';
+      break;
+      case 5: p.innerHTML = '18:15 - 19:55';
+      break;
+    }
+    pareLeft.appendChild(p);
   }
 }
 
 function getScheduleToday(date, scheduleWeek) {
   if (date.getDay() < 1 || date.getDay > 5) {
-    alert('Сегодня нет пар');
-    return;
+    throw new Error('function getScheduleToday() get bad data');
   }
   let x = date.getDay();
   for (let key in scheduleWeek) {
@@ -373,5 +451,10 @@ function getWeek(now) { // посылаешь нужную дату возвра
   let first = new Date(2019, 0, 11);
   let now2 = new Date();
   now2.setDate(now.getDate() - first.getDate());
-  return Math.ceil(((now2.getDate())/7)%4);
+  result = Math.ceil(((now2.getDate())/7)%4)
+  if (result == 0) {
+    return 4;
+  } else {
+    return result;
+  }
 }  

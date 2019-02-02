@@ -4,7 +4,7 @@ html, ul, li {
     color: yellow;
 }
 .body {
-    background: url(images/background.jpg) no-repeat top center black;
+    background: url(images/background.jpg) repeat top center black;
 }
 
 #load { 
@@ -12,14 +12,13 @@ html, ul, li {
     height: 100%;
     position: fixed;
     z-index: 9999;
-    background: url(images/spinner2.gif) no-repeat top center white;
+    background:  url(images/spinner2.gif) no-repeat top center white;
 }
 
 .schedule {
-    width: 100%;
-    border: 1px solid yellow;
-    margin: 10px 0;
-    background: #c0d0d1;
+    margin: 50px 0;
+    background:  #eee78d;
+    border-radius: 20px;
 }
 
 .date {
@@ -34,29 +33,52 @@ html, ul, li {
 
 .pare {
     height: 50px;
-    border: 1px solid black;
-    margin: 6px;
+    margin: 6px 14px;
+    border-radius: 10px;
+}
+.pare:last-child {
+    margin-bottom: 30px;
+}
+.entire {
+    width: 100%;
+    height: 20px;
 }
 
+/* Main Button*/
 #week {
-    margin: 10px auto;
-    background: #c0d0d1;
+    margin: 10px auto 0 auto;
     width: 165px;
+}
+#weekButton {
+    background: #c0d0d1;
     color: #00838f;
     padding: 10px;
     font-size: 17px;
 }
-
+#week :hover {
+    color: #c0d0d1;
+    background: #00838f;
+}
 
 
 /* Fields */
 .pare {
     display: flex;
+}
+.pareLeft {
+    width: 60%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.pareRight {
+    width: 40%;
+    display: flex;
     justify-content: flex-end;
 }
 .namePare {
     position: relative;
-    margin: auto 40% auto 4px;
+    margin: auto;
     width: 80px;
 }
 .typePare {
@@ -66,6 +88,10 @@ html, ul, li {
     margin: auto 10px;
     width: 70px;
 }
+.pareTime {
+    margin: auto;
+}
+
 
 .redDanger {
     background: red;
@@ -80,35 +106,27 @@ html, ul, li {
 
 
 
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    background:  url(images/note2.png) no-repeat center center;
+    height: 55px;
+    width: 140px;
 
-
-
-
-.header-h1 h1 {
+    margin: 0 auto -20px auto; 
     position: relative;
-    padding-bottom: .5rem;
-    font-size: 1.5rem;
+    bottom: 20px;
+
+    color: rgb(0, 0, 126);
+    font-size: 1.2rem;
     text-transform: uppercase;
-    text-align: center;
-    color: #00838f;
-    margin: 11px 0 -17px 0; 
-  }
-  .header-h1 h1::before {
-    content: "";
-    position: absolute;
-    border-bottom: 2px solid #00838f;
-    bottom: .25rem;
-    left: 50%;
-    width: 30%;
-    transform: translateX(-50%);
-  }
-  .header-h1 h1::after {
-    content: "";
-    position: absolute;
-    border-bottom: 2px solid #00838f;
-    bottom: 0;
-    left: 50%;
-    width: 15%;
-    transform: translateX(-50%);
-  }
+}
+
+
+
+/*Specially for full week*/
+.dateHead {
+    margin: 15px 0;
+}
