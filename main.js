@@ -32,7 +32,7 @@ const SUBJECTS = {
   TES_LK: new Subject('ТЭЦ', teacher, LK),
   TES_PZ: new Subject('ТЭЦ', teacher, PZ),
   TES_LR: new Subject('ТЭЦ', teacher, LR),
-  TRSPO_LK: new Subject('ТРиСПО', teacher, LK),
+  TRSPO_LK: new Subject('ТРиСПО', star, LK),
   TRSPO_PZ: new Subject('ТРиСПО', teacher, PZ),
   TRSPO_LR: new Subject('ТРиСПО', teacher, LR),
   NST_LK: new Subject('НСТ', teacher, LK),
@@ -107,7 +107,7 @@ const SCHEDULE = {
       2: SUBJECTS.TRSPO_PZ,
       3: SUBJECTS.TRSPO_LK,
       4: SUBJECTS.NST_LK,
-      5: SUBJECTS.Null,
+      5: SUBJECTS.NST_PZ,
     },
     4: {
       0: SUBJECTS.KPIJP_PZ,
@@ -191,7 +191,7 @@ const SCHEDULE = {
       2: SUBJECTS.TRSPO_PZ,
       3: SUBJECTS.TRSPO_LK,
       4: SUBJECTS.NST_LK,
-      5: SUBJECTS.Null,
+      5: SUBJECTS.NST_PZ,
     },
     4: {
       0: SUBJECTS.KPIJP_PZ,
