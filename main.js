@@ -445,9 +445,8 @@ function getScheduleWeek(num) {
 
 function getWeek(now) { // посылаешь нужную дату возвращет номер недели
   let first = new Date(2019, 0, 11);
-  let now2 = new Date();
-  now2.setDate(now.getDate() - first.getDate());
-  result = Math.ceil(((now2.getDate())/7)%4)
+  let difference = now - first
+  result = Math.ceil(((difference)/1000/3600/24/7)%4);
   if (result == 0) {
     return 4;
   } else {
