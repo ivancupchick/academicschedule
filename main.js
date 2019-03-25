@@ -65,10 +65,10 @@ const SCHEDULE = {
       2: SUBJECTS.TRSPO_PZ,
       3: SUBJECTS.TRSPO_LK,
       4: SUBJECTS.NST_LK,
-      5: SUBJECTS.NST_PZ,
+      5: SUBJECTS.Null,
     },
     4: {
-      0: SUBJECTS.Eng_LK,
+      0: SUBJECTS.Null,
       1: SUBJECTS.TT_LK,
       2: SUBJECTS.NST_LR,
       3: SUBJECTS.NST_LR,
@@ -88,9 +88,9 @@ const SCHEDULE = {
     1: {
       0: SUBJECTS.KPIJP_LK,
       1: SUBJECTS.FIZRA_LK,
-      2: SUBJECTS.INJGRA_PZ,
+      2: SUBJECTS.Null,
       3: SUBJECTS.SUBD_LK,
-      4: SUBJECTS.Null,
+      4: SUBJECTS.SUBD_PZ,
       5: SUBJECTS.Null,
     },
     2: {
@@ -149,10 +149,10 @@ const SCHEDULE = {
       2: SUBJECTS.TRSPO_PZ,
       3: SUBJECTS.TRSPO_LK,
       4: SUBJECTS.NST_LK,
-      5: SUBJECTS.NST_PZ,
+      5: SUBJECTS.Null,
     },
     4: {
-      0: SUBJECTS.Eng_LK,
+      0: SUBJECTS.Null,
       1: SUBJECTS.TT_LK,
       2: SUBJECTS.SUBD_LR,
       3: SUBJECTS.SUBD_LR,
